@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI E-Commerce (Local NLP)</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .product { border: 1px solid #ccc; padding: 10px; margin: 10px; }
+        .products { display: flex; flex-wrap: wrap; }
+        .product { width: 200px; }
+        #recommendations { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>AI-Powered E-Commerce Catalog</h1>
+    <input type="text" id="searchBox" placeholder="Search (e.g., cheap shoes with good reviews)" size="50">
+    <button onclick="searchProducts()">Search</button>
+
+    <div id="products" class="products">
+        {% for p in products %}
+        <div class="product">
+            <h3>{{ p.name }}</h3>
+            <p>{{ p.description }}</p>
+            <p><strong>Price:</strong> ${{ p.price }}</p>
+            <p><strong>Category:</strong> {{ p.category }}</p>
+            <p><strong>Rating:</strong> {{ p.rating }}</p>
+            <button onclick="getRecommendations({{ p.id }})">Recommend Similar</button>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div id="recommendations">
+        <h2>Recommendations</h2>
+        <div id="recList" class="products"></div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
